@@ -1,23 +1,23 @@
 package com.headstrong.codegen.model;
 
+import lombok.Data;
+
 /**
  * @author Hodur
  * @date 2021/8/12
  */
-
+@Data
 public class GlobalConfig {
 
     private String author;
     private String dateFormat;
     private String basePackage;
-    private String controllerSuffix;
-    private String serviceSuffix;
-    private String repositorySuffix;
-    private String voSuffix;
-    private String poSuffix;
-    private String controllerPackage;
-    private String servicePackage;
-    private String repositoryPackage;
-    private String voPackage;
-    private String poPackage;
+    private String excludeTablePattern;
+    private String includeTablePattern;
+    private String templatePath;
+    private ModuleConfig controllerConfig;
+    private ModuleConfig serviceConfig;
+    private ModuleConfig repositoryConfig;
+    private ModuleConfig poConfig;
+    private ModuleConfig voConfig;
 }
