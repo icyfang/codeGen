@@ -1,4 +1,4 @@
-package com.headstrong.codegen.model;
+package com.headstrong.codegen.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,5 +1,7 @@
 package com.headstrong.codegen.model;
 
+import com.headstrong.codegen.utils.ResourceHelper;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
