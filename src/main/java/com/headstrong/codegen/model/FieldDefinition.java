@@ -11,7 +11,7 @@ public class FieldDefinition {
 
     private String name;
     private Boolean nullable;
-    private Boolean unique;
+    private Boolean autoIncrement;
     private String type;
     private String comment;
     private Integer length;
