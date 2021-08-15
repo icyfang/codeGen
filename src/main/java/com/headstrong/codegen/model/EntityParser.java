@@ -42,7 +42,7 @@ public class EntityParser {
 
             FieldDefinition field = new FieldDefinition();
             field.setName(columnName);
-            field.setType(typeName);
+            field.setType(toJavaType(typeName));
             field.setLength(columnSize);
             field.setNullable(nullable == 1);
             field.setComment(remarks);
