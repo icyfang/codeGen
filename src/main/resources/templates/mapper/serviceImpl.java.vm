@@ -1,0 +1,80 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${table.entityName};
+import ${package.Mapper}.${table.mapperName};
+import com.example.codegenerator.basic.PageRequestVO;
+import com.example.codegenerator.basic.PageResponseVO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}VO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}AddParamVO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}UpdateParamVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.Date;
+import org.springframework.beans.BeanUtils;
+import com.baomidou.mybatisplus.extension.exceptions.ApiException;
+/**
+ * $!{table.comment} service implement
+ *
+ * @author Hodur
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+@Service
+public class ${table.serviceImplName} implements ${table.serviceName}{
+
+        #set($repoName=${table.mapperName.substring(0, 1).toLowerCase()}+${table.mapperName.substring(1)})
+        #set($poVariable=${table.EntityName.substring(0, 1).toLowerCase()}+${table.EntityName.substring(1)})
+        @Autowired
+        private ${table.mapperName} ${repoName};
+
+    @Override
+    public PageResponseVO<${cfg.domainName}VO> query${cfg.domainName}(PageRequestVO paramVO){
+    return null;
+    }
+
+    @Override
+    public ${cfg.domainName}VO get${cfg.domainName}(Integer id){
+        ${table.EntityName} ${poVariable} =get${table.EntityName}(id);
+        return to${cfg.domainName}VO(${poVariable});
+    }
+
+    @Override
+    public ${cfg.domainName}VO add${cfg.domainName}(${cfg.domainName}AddParamVO paramVO){
+        return null;
+        }
+
+    @Override
+    public ${cfg.domainName}VO update${cfg.domainName}(Integer id, ${cfg.domainName}UpdateParamVO paramVO){
+        ${table.EntityName} ${poVariable} =get${table.EntityName}(id);
+        // todo set updated fields
+        ${repoName}.save(${poVariable});
+        return to${cfg.domainName}VO(${poVariable});
+    }
+
+    @Override
+    public Boolean delete${cfg.domainName}(Integer id){
+        ${table.EntityName} ${poVariable} =get${table.EntityName}(id);
+        // todo
+        Integer userId = null;
+        ${poVariable}.setDeleteId(userId)
+                .setDeleteDatetime(new Date());
+        ${repoName}.save(${poVariable});
+        return true;
+    }
+
+
+    private ${cfg.domainName}VO to${cfg.domainName}VO(${table.EntityName} ${poVariable}) {
+                ${cfg.domainName}VO vo = new ${cfg.domainName}VO();
+                BeanUtils.copyProperties(${poVariable}, vo);
+        vo.setId(${poVariable}.getOid());
+        return vo;
+    }
+
+   private ${table.EntityName} get${table.EntityName}(Integer id) {
+        return  ${repoName}.findById(id).orElseThrow(
+                () -> new ApiException("${cfg.domainName} with id: " + id + "does not exist"));
+   }
+}
+#end

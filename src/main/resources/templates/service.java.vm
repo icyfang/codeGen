@@ -1,0 +1,62 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import com.example.codegenerator.basic.PageRequestVO;
+import com.example.codegenerator.basic.PageResponseVO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}VO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}AddParamVO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}UpdateParamVO;
+/**
+ * $!{cfg.domainName} Service
+ *
+ * @author Hodur
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+public interface ${table.serviceName} {
+
+    /**
+     * query ${cfg.domainName}
+     *
+     * @param paramVO paramVO
+     * @return com.example.codegenerator.basic.PageRequestVO<com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}VO>
+     */
+    PageResponseVO<${cfg.domainName}VO> query${cfg.domainName}(PageRequestVO paramVO);
+
+    /**
+     * get ${cfg.domainName}
+     *
+     * @param id id
+     * @return com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}VO
+     */
+    ${cfg.domainName}VO get${cfg.domainName}(Integer id);
+
+    /**
+     * add ${cfg.domainName}
+     *
+     * @param paramVO paramVO
+     * @return com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}VO
+     */
+    ${cfg.domainName}VO add${cfg.domainName}(${cfg.domainName}AddParamVO paramVO);
+
+    /**
+     * update ${cfg.domainName}
+     *
+     * @param id      id
+     * @param paramVO paramVO
+     * @return com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}VO
+     */
+    ${cfg.domainName}VO update${cfg.domainName}(Integer id, ${cfg.domainName}UpdateParamVO paramVO);
+
+    /**
+     * delete ${cfg.domainName}
+     *
+     * @param id     id
+     * @return java.lang.Boolean
+     */
+    Boolean delete${cfg.domainName}(Integer id);
+
+}
+#end

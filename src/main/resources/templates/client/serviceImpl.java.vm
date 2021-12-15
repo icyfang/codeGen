@@ -1,0 +1,55 @@
+package ${package.ServiceImpl};
+
+import com.example.codegenerator.basic.PageRequestVO;
+import com.example.codegenerator.basic.PageResponseVO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}VO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}AddParamVO;
+import com.example.codegenerator.business.${package.ModuleName}.vo.${cfg.domainName}UpdateParamVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.Date;
+import ${package.Mapper}.${table.mapperName};
+/**
+ * $!{table.comment} service implement
+ *
+ * @author Hodur
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+@Service
+public class ${table.serviceImplName} implements ${table.serviceName}{
+
+        #set($repoName=${table.mapperName.substring(0, 1).toLowerCase()}+${table.mapperName.substring(1)})
+        #set($poVariable=${table.EntityName.substring(0, 1).toLowerCase()}+${table.EntityName.substring(1)})
+        @Autowired
+        private ${table.mapperName} ${repoName};
+
+    @Override
+    public PageResponseVO<${cfg.domainName}VO> query${cfg.domainName}(PageRequestVO paramVO){
+    return ${repoName}.query${cfg.domainName}(paramVO).getBody();
+    }
+
+    @Override
+    public ${cfg.domainName}VO get${cfg.domainName}(Integer id){
+            return ${repoName}.get${cfg.domainName}(id).getBody();
+    }
+
+    @Override
+    public ${cfg.domainName}VO add${cfg.domainName}(${cfg.domainName}AddParamVO paramVO){
+            return ${repoName}.add${cfg.domainName}(paramVO).getBody();
+        }
+
+    @Override
+    public ${cfg.domainName}VO update${cfg.domainName}(Integer id, ${cfg.domainName}UpdateParamVO paramVO){
+                    return ${repoName}.update${cfg.domainName}(id, paramVO).getBody();
+    }
+
+    @Override
+    public Boolean delete${cfg.domainName}(Integer id){
+                    return ${repoName}.delete${cfg.domainName}(id).getBody();
+    }
+
+}
+#end

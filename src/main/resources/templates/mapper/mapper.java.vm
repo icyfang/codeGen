@@ -1,0 +1,19 @@
+package ${package.Mapper};
+
+import ${package.Entity}.${entity};
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+/**
+ * $!{cfg.domainName} Repository
+ *
+ * @author Hodur
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+public interface ${table.mapperName} extends JpaRepository<${table.entityName}, Integer>,
+                                             JpaSpecificationExecutor<${table.entityName}> {
+
+}
+#end

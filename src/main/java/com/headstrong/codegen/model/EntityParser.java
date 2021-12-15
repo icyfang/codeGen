@@ -1,7 +1,5 @@
 package com.headstrong.codegen.model;
 
-import com.headstrong.codegen.utils.ResourceHelper;
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -17,9 +15,9 @@ import java.util.List;
 public class EntityParser {
 
     public EntityDefinition parseTable(String table) throws SQLException {
-        String url = ResourceHelper.getProperty("datasource.url");
-        String username = ResourceHelper.getProperty("datasource.url");
-        String password = ResourceHelper.getProperty("datasource.url");
+        String url = "";
+        String username = "";
+        String password = "";
         Connection connection = DriverManager.getConnection(url, username, password);
         DatabaseMetaData metaData = connection.getMetaData();
         ResultSet columns = metaData.getColumns(null, null, table, null);
